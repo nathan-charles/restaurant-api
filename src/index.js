@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 import jwt from './helpers/jwt';
+import errorHandler from './helpers/error-handler';
 
 /**
  * Controllers (route handlers).
@@ -22,10 +23,10 @@ app.use(bodyParser.json());
 // use JWT auth to secure the api
 app.use(jwt());
 
-// global error handler
-// app.use(errorHandler);
-
 // api routes
 app.use('/users', userController);
+
+// global error handler
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log('Example app listening on port 3000!'));
