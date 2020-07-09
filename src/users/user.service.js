@@ -11,11 +11,14 @@ async function authenticate({ username, password }) {
     const token = jwt.sign({ sub: user.id }, process.env.API_SECRET, {
       expiresIn: '7d',
     });
+
     return {
       ...user.toJSON(),
       token,
     };
   }
+
+  return null;
 }
 
 async function create(userParam) {
@@ -32,7 +35,7 @@ async function create(userParam) {
   }
 
   // save user
-  await user.save();
+  return user.save();
 }
 
 async function getById(id) {
