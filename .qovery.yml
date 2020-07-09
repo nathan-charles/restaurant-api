@@ -1,0 +1,15 @@
+application:
+  name: restaurant-reviews-api
+  project: restaurant-reviews
+  cloud_region: aws/us-east-2
+  publicly_accessible: true
+databases:
+  - type: mongodb
+    version: '4.2'
+    name: restaurant-reviews-database
+routers:
+  - name: main
+    routes:
+      - application_name: restaurant-reviews-api
+        paths:
+          - /api/*
