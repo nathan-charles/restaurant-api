@@ -20,8 +20,8 @@ function jwt() {
   }).unless({
     path: [
       // public routes that don't require authentication
-      '/api/users/authenticate',
-      '/api/users/register',
+      '/users/authenticate',
+      '/users/register',
     ],
   });
 }
