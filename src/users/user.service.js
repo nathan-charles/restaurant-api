@@ -21,7 +21,7 @@ async function authenticate({ username, password }) {
 async function create(userParam) {
   // validate
   if (await User.findOne({ username: userParam.username })) {
-    throw `Username "${userParam.username}" is already taken`;
+    throw new Error(`Username "${userParam.username}" is already taken`);
   }
 
   const user = new User(userParam);
