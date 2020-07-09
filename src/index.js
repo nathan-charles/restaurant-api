@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import jwt from './helpers/jwt';
 import errorHandler from './helpers/error-handler';
@@ -18,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
 
 // use JWT auth to secure the api
 app.use(jwt());
@@ -29,4 +30,4 @@ app.use('/users', userController);
 // global error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log('Example app listening on port 3000!'));
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
