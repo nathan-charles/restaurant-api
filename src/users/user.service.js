@@ -21,17 +21,17 @@ async function authenticate({ username, password }) {
   return null;
 }
 
-async function create(userParam) {
+async function create(params) {
   // validate
-  if (await User.findOne({ username: userParam.username })) {
-    throw new Error(`Username "${userParam.username}" is already taken`);
+  if (await User.findOne({ username: params.username })) {
+    throw new Error(`Username "${params.username}" is already taken`);
   }
 
-  const user = new User(userParam);
+  const user = new User(params);
 
   // hash password
-  if (userParam.password) {
-    user.hash = bcrypt.hashSync(userParam.password, 10);
+  if (params.password) {
+    user.hash = bcrypt.hashSync(params.password, 10);
   }
 
   // save user
