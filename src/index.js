@@ -9,6 +9,7 @@ import errorHandler from './helpers/error-handler';
  * Controllers (route handlers).
  */
 import userController from './users/user.controller';
+import restaurantController from './restaurants/restaurant.controller';
 
 /**
  * Create Express server.
@@ -26,6 +27,7 @@ app.use(jwt());
 
 // api routes
 app.use('/users', userController);
+app.use('/restaurants', restaurantController);
 
 // global error handler
 app.use(errorHandler);
