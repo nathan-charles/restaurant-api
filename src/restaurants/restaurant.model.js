@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const schema = new Schema({
   name: { type: String, required: true },
+  location: { type: String, required: true },
   rating: { type: Number, default: 0 },
   reviewCount: { type: Number, default: 0 },
   createdDate: { type: Date, default: Date.now },
