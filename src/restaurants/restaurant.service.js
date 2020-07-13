@@ -15,8 +15,16 @@ async function create(params) {
   return restaurant.save();
 }
 
+async function update(id, params) {
+  console.log(id, params);
+  const restaurant = await Restaurant.findById(id);
+  Object.assign(restaurant, params);
+  return restaurant.save();
+}
+
 export default {
   getAll,
   getById,
   create,
+  update,
 };
