@@ -6,6 +6,10 @@ async function getAll() {
   return Restaurant.find();
 }
 
+async function getById(id) {
+  return Restaurant.findById(id);
+}
+
 async function create(params) {
   const restaurant = new Restaurant(params);
   return restaurant.save();
@@ -13,5 +17,6 @@ async function create(params) {
 
 export default {
   getAll,
+  getById,
   create,
 };
