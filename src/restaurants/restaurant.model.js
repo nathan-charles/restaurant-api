@@ -13,6 +13,10 @@ const schema = new Schema({
 schema.set('toJSON', {
   virtuals: true,
   versionKey: false,
+  transform(doc, ret) {
+    // eslint-disable-next-line
+    delete ret._id;
+  },
 });
 
 export default mongoose.model('Restaurant', schema);
