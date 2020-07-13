@@ -1,8 +1,6 @@
 import express from 'express';
 import userService from './user.service';
 
-const router = express.Router();
-
 async function authenticate(req, res, next) {
   try {
     const user = await userService.authenticate(req.body);
@@ -28,6 +26,7 @@ async function register(req, res, next) {
 }
 
 // routes
+const router = express.Router();
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 
