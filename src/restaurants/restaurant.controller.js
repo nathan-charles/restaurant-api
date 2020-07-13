@@ -1,7 +1,20 @@
 import express from 'express';
 import restaurantService from './restaurant.service';
 
-const router = express.Router();
+async function create(req, res, next) {
+  try {
+    const { role } = req.user;
+    if (role !== 'admin') {
+      return res
+        .status(403)
+        .json({ message: 'Admin access is required to create Restaurant.' });
+    }
+    const restaurant = await restaurantService.create(req.body);
+    return res.json(restaurant);
+  } catch (error) {
+    return next(error);
+  }
+}
 
 async function getAll(req, res, next) {
   try {
@@ -24,22 +37,8 @@ async function getById(req, res, next) {
   }
 }
 
-async function create(req, res, next) {
-  try {
-    const { role } = req.user;
-    if (role !== 'admin') {
-      return res
-        .status(403)
-        .json({ message: 'Admin access is required to create Restaurant.' });
-    }
-    const restaurant = await restaurantService.create(req.body);
-    return res.json(restaurant);
-  } catch (error) {
-    return next(error);
-  }
-}
-
 // routes
+const router = express.Router();
 router.post('/', create);
 router.get('/', getAll);
 router.get('/:id', getById);
