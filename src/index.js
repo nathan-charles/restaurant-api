@@ -10,6 +10,7 @@ import errorHandler from './helpers/error-handler';
  */
 import userController from './users/user.controller';
 import restaurantController from './restaurants/restaurant.controller';
+import reviewsController from './reviews/review.controller';
 
 /**
  * Create Express server.
@@ -28,6 +29,7 @@ app.use(jwt());
 // api routes
 app.use('/users', userController);
 app.use('/restaurants', restaurantController);
+app.use('/reviews', reviewsController);
 
 // global error handler
 app.use(errorHandler);
