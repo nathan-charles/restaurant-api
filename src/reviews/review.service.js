@@ -6,7 +6,7 @@ async function getAll(restaurant) {
   return Review.find({ restaurant });
 }
 
-async function getAverageRating(restaurant) {
+async function getReviewStatsForRestaurant(restaurant) {
   return Review.aggregate([
     {
       $match: {
@@ -16,7 +16,8 @@ async function getAverageRating(restaurant) {
     {
       $group: {
         _id: null,
-        result: { $avg: '$rating' },
+        rating: { $avg: '$rating' },
+        reviewCount: { $sum: { $toInt: 1 } },
       },
     },
   ]);
@@ -29,6 +30,6 @@ async function create(params) {
 
 export default {
   getAll,
-  getAverageRating,
+  getReviewStatsForRestaurant,
   create,
 };
