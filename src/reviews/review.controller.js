@@ -6,15 +6,13 @@ async function create(req, res, next) {
   try {
     const { sub, username } = req.user;
 
-    const params = {
+    const review = await reviewService.create({
       ...req.body,
       author: {
         id: sub,
         username,
       },
-    };
-
-    const review = await reviewService.create(params);
+    });
 
     // Compute new average rating for resaurant
     const { restaurant } = req.body;
