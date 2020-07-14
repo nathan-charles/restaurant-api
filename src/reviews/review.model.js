@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const schema = new Schema({
+  createdDate: { type: Date, default: Date.now },
   restaurant: { type: String, required: true },
   comments: { type: String, required: true },
   rating: { type: Number, default: 5 },
