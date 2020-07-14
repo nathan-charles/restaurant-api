@@ -16,7 +16,6 @@ async function create(params) {
 }
 
 async function update(id, params) {
-  console.log(id, params);
   const restaurant = await Restaurant.findById(id);
   Object.assign(restaurant, params);
   return restaurant.save();
