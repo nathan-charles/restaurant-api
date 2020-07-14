@@ -8,9 +8,7 @@ async function authenticate(req, res, next) {
       return res.json(user);
     }
 
-    return res
-      .status(400)
-      .json({ message: 'Username or password is incorrect' });
+    return res.status(400).json({ message: 'Username or password is incorrect' });
   } catch (error) {
     return next(error);
   }
