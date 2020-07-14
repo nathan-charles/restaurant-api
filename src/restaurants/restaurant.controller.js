@@ -5,9 +5,7 @@ async function create(req, res, next) {
   try {
     const { role } = req.user;
     if (role !== 'admin') {
-      return res
-        .status(403)
-        .json({ message: 'Admin access is required to create Restaurant.' });
+      return res.status(403).json({ message: 'Admin access is required to create Restaurant.' });
     }
     const restaurant = await restaurantService.create(req.body);
     return res.json(restaurant);
