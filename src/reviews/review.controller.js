@@ -18,8 +18,9 @@ async function create(req, res, next) {
 
     // Compute new average rating for resaurant
     const { restaurant } = req.body;
-    const averageRating = await reviewService.getAverageRating(restaurant);
-    restaurantService.update(restaurant, { rating: averageRating[0].result });
+    const averageRating = await reviewService.getReviewStatsForRestaurant(restaurant);
+    const { rating, reviewCount } = averageRating[0];
+    restaurantService.update(restaurant, { rating, reviewCount });
 
     // Return created review
     return res.json(review);
