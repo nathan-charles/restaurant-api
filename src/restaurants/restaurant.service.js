@@ -21,9 +21,14 @@ async function update(id, params) {
   return restaurant.save();
 }
 
+async function deleteById(id) {
+  return Restaurant.findByIdAndRemove(id);
+}
+
 export default {
   getAll,
   getById,
   create,
   update,
+  deleteById,
 };
