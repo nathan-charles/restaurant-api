@@ -35,12 +35,25 @@ async function getById(req, res, next) {
   }
 }
 
+async function deleteById(req, res, next) {
+  try {
+    const { role } = req.user;
+    if (role !== 'admin') {
+      return res.status(403).json({ message: 'Admin access is required to delete Restaurant.' });
+    }
+    await restaurantService.deleteById(req.params.id);
+    return res.json({});
+  } catch (error) {
+    return next(error);
+  }
+}
+
 // routes
 const router = express.Router();
 router.post('/', create);
 router.get('/', getAll);
 router.get('/:id', getById);
 // router.put('/:id', getById);
-// router.delete('/:id', getById);
+router.delete('/:id', deleteById);
 
 export default router;
